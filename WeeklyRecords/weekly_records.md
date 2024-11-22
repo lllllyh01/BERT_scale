@@ -106,3 +106,14 @@ Optimizer=AdamW, warmup_steps=500, weight_decay=0.01 <br>
 1. Since BERT is not a generative model, it need encoder and decoder to generate text summarization, making the total parameters twice of the same size of GPT. Should we keep the size of base model, or complete model the same, to make them comparable?
 2. Training hyperparameters finetuning
 3. Training is super slow if finetuning entire model. Using PEFT (LoRA) instead.
+
+# Week 7-8
+### Done
+1. Experiment results on small scale BERT and GPT (about 130 million parameters):
+
+   Dataset: CNN Daily Mail dataset for text summarization. Used 60,000 training data, 1,000 testing data.
+   **GPT rougeL: 0.132, BERT rougeL: 0.21**
+
+   Both GPT and BERT were pretrained on large language dataset. Here BERT model is actually BART (a BERT encoder + GPT decoder). 
+   
+   I also tried pure BERT structure (BERT encoder + BERT decoder), but the results were not that good. It may because that as an encoder-only structure, BERT didn't pretrained on generation tasks, which made it perform poor on text summarization.
